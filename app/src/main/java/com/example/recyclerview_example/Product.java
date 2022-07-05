@@ -1,6 +1,7 @@
 package com.example.recyclerview_example;
 
 public class Product {
+    private int id;
     private String title;
     private String description;
     private double price;
@@ -8,10 +9,19 @@ public class Product {
     public Product() {
     }
 
-    public Product(String title, String description, double price) {
+    public Product(int id, String title, String description, double price) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.price = price;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {

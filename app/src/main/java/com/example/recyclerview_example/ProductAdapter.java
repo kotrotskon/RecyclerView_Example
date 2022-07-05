@@ -31,6 +31,7 @@ public class ProductAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        ((MyViewHolder)holder).txtVw_id.setText(String.valueOf(products.get(position).getId()));
         ((MyViewHolder)holder).txtVw_title.setText(products.get(position).getTitle());
         ((MyViewHolder)holder).txtVw_description.setText(products.get(position).getDescription());
         ((MyViewHolder)holder).txtVw_price.setText(String.valueOf(products.get(position).getPrice()));
@@ -43,12 +44,14 @@ public class ProductAdapter extends RecyclerView.Adapter {
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
+        TextView txtVw_id;
         TextView txtVw_title;
         TextView txtVw_description;
         TextView txtVw_price;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+            txtVw_id = itemView.findViewById(R.id.txtVw_id);
             txtVw_title = itemView.findViewById(R.id.txtVw_title);
             txtVw_description = itemView.findViewById(R.id.txtVw_description);
             txtVw_price = itemView.findViewById(R.id.txtVw_price);
