@@ -1,10 +1,14 @@
 package com.example.recyclerview_example;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,6 +40,23 @@ public class ProductAdapter extends RecyclerView.Adapter {
         ((MyViewHolder)holder).txtVw_description.setText(products.get(position).getDescription());
         ((MyViewHolder)holder).txtVw_price.setText(String.valueOf(products.get(position).getPrice()));
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TextView txtVw_title = view.findViewById(R.id.txtVw_title);
+                txtVw_title.setTextColor(Color.RED);
+                Toast.makeText(context, "You Click "+txtVw_title.getText().toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        ((MyViewHolder)holder).btn_edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String title = ((MyViewHolder)holder).txtVw_title.getText().toString();
+                Toast.makeText(context, "Edit "+title, Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     @Override
@@ -49,12 +70,18 @@ public class ProductAdapter extends RecyclerView.Adapter {
         TextView txtVw_description;
         TextView txtVw_price;
 
+        Button btn_edit;
+        Button btn_delete;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             txtVw_id = itemView.findViewById(R.id.txtVw_id);
             txtVw_title = itemView.findViewById(R.id.txtVw_title);
             txtVw_description = itemView.findViewById(R.id.txtVw_description);
             txtVw_price = itemView.findViewById(R.id.txtVw_price);
+
+            btn_edit = itemView.findViewById(R.id.btn_edit);
+            btn_delete = itemView.findViewById(R.id.btn_delete);
         }
     }
 }
