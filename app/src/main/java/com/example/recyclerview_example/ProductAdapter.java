@@ -7,11 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -39,6 +42,7 @@ public class ProductAdapter extends RecyclerView.Adapter {
         ((MyViewHolder)holder).txtVw_title.setText(products.get(position).getTitle());
         ((MyViewHolder)holder).txtVw_description.setText(products.get(position).getDescription());
         ((MyViewHolder)holder).txtVw_price.setText(String.valueOf(products.get(position).getPrice()));
+        Picasso.get().load(products.get(position).getImage()).into(((MyViewHolder)holder).imageView);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,6 +73,7 @@ public class ProductAdapter extends RecyclerView.Adapter {
         TextView txtVw_title;
         TextView txtVw_description;
         TextView txtVw_price;
+        ImageView imageView;
 
         Button btn_edit;
         Button btn_delete;
@@ -79,6 +84,7 @@ public class ProductAdapter extends RecyclerView.Adapter {
             txtVw_title = itemView.findViewById(R.id.txtVw_title);
             txtVw_description = itemView.findViewById(R.id.txtVw_description);
             txtVw_price = itemView.findViewById(R.id.txtVw_price);
+            imageView = itemView.findViewById(R.id.imageView);
 
             btn_edit = itemView.findViewById(R.id.btn_edit);
             btn_delete = itemView.findViewById(R.id.btn_delete);
